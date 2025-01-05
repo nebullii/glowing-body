@@ -1,0 +1,47 @@
+---
+const pageTitle = "About Glowing Body";
+import Header from '../components/Header.astro';    
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+const identity = {
+  firstName: "Sarah",
+  country: "Canada",
+  occupation: "Technical Writer",
+  hobbies: ["photography", "birdwatching", "baseball"],
+};
+---
+
+<Header />
+
+<main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-6">{pageTitle}</h1>
+    
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Our Mission</h2>
+        <p class="mb-4">At Glowing Body, we believe that true wellness starts from within. We're passionate about empowering you with knowledge about the food that fuels your body and mind.</p>
+    </section>
+
+    <section class="grid md:grid-cols-2 gap-8">
+        <div>
+            <h3 class="text-xl font-semibold mb-3">What We Offer</h3>
+            <ul class="space-y-2">
+                <li>Real Food Wisdom: Understanding whole, unprocessed foods</li>
+                <li>Brain Food Insights: Nutrients that power your cognitive function</li>
+                <li>Food Science: Latest research and innovations in nutrition</li>
+                <li>Mindful Eating: Building a conscious relationship with food</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="text-xl font-semibold mb-3">Our Commitment</h3>
+            <p>We're dedicated to bringing you evidence-based information about nutrition, helping you make informed decisions about what you consume. From ancient wisdom to cutting-edge food science, we're here to guide you on your journey to optimal health.</p>
+        </div>
+    </section>
+
+    <section class="mt-8">
+        <h2 class="text-2xl font-semibold mb-4">Join Our Journey</h2>
+        <p>Discover how the right nutrients can transform your body and mind. Let's explore the fascinating world of conscious nutrition together, one bite at a time.</p>
+    </section>
+</main>
+
+<Footer />

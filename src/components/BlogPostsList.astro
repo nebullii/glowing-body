@@ -1,0 +1,62 @@
+---
+const { posts, showAll = false } = Astro.props;
+const displayPosts = showAll ? posts : posts.slice(0, 3); // Show only 3 posts on homepage
+---
+
+<div class="flex flex-col gap-12">
+    {displayPosts.map((post) => (
+        <article class="border-b border-slate-800 pb-12 last:border-none">
+            <div class="md:grid md:grid-cols-3 md:gap-8">
+                <div class="md:col-span-1">
+                    <a href={post.url} class="block relative h-0 pb-[56.25%] md:pb-[75%] overflow-hidden rounded-lg mb-4 md:mb-0 group">
+                        {post.frontmatter.image && (
+                            <img 
+                                src={post.frontmatter.image.url} 
+                                alt={post.frontmatter.image.alt} 
+                                class="absolute inset-0 object-cover w-full h-full bg-slate-800 transition duration-300 group-hover:scale-105"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        )}
+                    </a>
+                </div>
+                <div class="md:col-span-2">
+                    <div class="mb-4 text-sm text-gray-400 flex items-center">
+                        <time datetime={post.frontmatter.pubDate}>
+                            {new Date(post.frontmatter.pubDate).toLocaleDateString('en-us', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric',
+                            })}
+                        </time>
+                        {post.frontmatter.category && (
+                            <>
+                                <span class="px-2">·</span>
+                                <span class="capitalize bg-slate-800 px-3 py-1 rounded-full">
+                                    {post.frontmatter.category}
+                                </span>
+                            </>
+                        )}
+                    </div>
+                    <h2 class="text-2xl font-bold mb-4">
+                        <a href={post.url} class="text-white hover:text-emerald-400 transition duration-200">
+                            {post.frontmatter.title}
+                        </a>
+                    </h2>
+                    <p class="text-gray-400 mb-4 line-clamp-2">
+                        {post.frontmatter.description}
+                    </p>
+                    {post.frontmatter.tags && (
+                        <div class="flex flex-wrap gap-2">
+                            {post.frontmatter.tags.map((tag) => (
+                                <span class="text-sm text-gray-400 bg-slate-800 px-3 py-1 rounded-full">
+                                    #{tag}
+                                </span>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+        </article>
+    ))}
+</div>

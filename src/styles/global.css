@@ -1,21 +1,25 @@
-html {
-    background-color: #f1f5f9;
-    font-family: sans-serif;
-  }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --aw-color-primary: #00B341;
+  --aw-color-secondary: #475569;
+  --aw-color-accent: #06b6d4;
   
-  body {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 80ch;
-    padding: 1rem;
-    line-height: 1.5;
+  --aw-font-sans: 'Inter Variable';
+  --aw-font-serif: var(--aw-font-sans);
+  --aw-font-heading: var(--aw-font-sans);
+}
+
+[data-theme="dark"] {
+  --aw-color-primary: #00E676;
+  --aw-color-secondary: #94a3b8;
+  --aw-color-accent: #0ea5e9;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full border-2 border-transparent px-6 py-3 text-center text-base font-medium leading-snug transition duration-200 ease-in hover:border-gray-200 hover:bg-gray-100 dark:hover:border-gray-700 dark:hover:bg-gray-800;
   }
-  
-  * {
-    box-sizing: border-box;
-  }
-  
-  h1 {
-    margin: 1rem 0;
-    font-size: 2.5rem;
-  }
+}

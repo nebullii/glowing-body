@@ -1,15 +1,45 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
-const pageTitle = "Glowing Body | Your Guide to Mindful Nutrition";
+import Layout from '../layouts/Layout.astro';
+import BlogPostsList from '../components/BlogPostsList.astro';
+
+// Get all blog posts
+const posts = await Promise.all(
+  Object.entries(await import.meta.glob('./posts/*.md'))
+    .map(async ([_, post]) => {
+      const { frontmatter } = await post();
+      return {
+        url: post.url,
+        frontmatter
+      };
+    })
+);
+
+const sortedPosts = posts.sort((a, b) => 
+    new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+);
 ---
 
+<Layout title="Glowing Body | Your Guide to Mindful Nutrition">
+    <!-- Hero Section -->
+    <section class="py-20 mx-auto max-w-6xl px-4">
+        <h1 class="text-5xl md:text-6xl font-bold text-white text-center mb-8">
+            Transform Your Health Through Real Food
+        </h1>
+        <p class="text-xl text-gray-400 text-center max-w-3xl mx-auto">
+            Discover the power of mindful nutrition and learn how natural, whole foods can enhance your physical and mental wellbeing.
+        </p>
+    </section>
 
-<Header />
-
-<main class="container mx-auto px-4 py-12">
-	<h1>{pageTitle}</h1>
-</main>
-
-<Footer />
+    <!-- Latest Blog Posts Section -->
+    <section class="py-16 bg-slate-900/50">
+        <div class="mx-auto max-w-6xl px-4">
+            <div class="flex justify-between items-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Latest Articles</h2>
+                <a href="/blog" class="text-emerald-400 hover:text-emerald-300 transition duration-200">
+                    View All Posts →
+                </a>
+            </div>
+            <BlogPostsList posts={sortedPosts} />
+        </div>
+    </section>
+</Layout>

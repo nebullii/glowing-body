@@ -1,0 +1,31 @@
+backend:
+  name: git-gateway
+  branch: main # or your default branch name
+
+media_folder: "public/images" # Media will be stored in this folder
+public_folder: "/images" # URL path to media
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "src/pages/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publication Date", name: "pubDate", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Author", name: "author", widget: "string", default: "Glowing Body Team"}
+      - {label: "Featured Image", name: "image", widget: "object", fields: [
+          {label: "URL", name: "url", widget: "image"},
+          {label: "Alt Text", name: "alt", widget: "string"}
+        ]}
+      - {label: "Category", name: "category", widget: "select", options: [
+          "Nutrition",
+          "Muscle Health",
+          "Glucose Management",
+          "Fasting",
+          "Wellness"
+        ]}
+      - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Content", name: "body", widget: "markdown"}

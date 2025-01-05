@@ -1,47 +1,93 @@
 ---
-const pageTitle = "About Glowing Body";
-import Header from '../components/Header.astro';    
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
-const identity = {
-  firstName: "Sarah",
-  country: "Canada",
-  occupation: "Technical Writer",
-  hobbies: ["photography", "birdwatching", "baseball"],
-};
+import Layout from '../layouts/Layout.astro';
 ---
 
-<Header />
+<Layout title="About | Glowing Body">
+    <!-- Previous sections remain the same -->
+    <main class="mx-auto max-w-6xl px-4 py-16">
+        <!-- Hero Section -->
+        <header class="text-center max-w-3xl mx-auto mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold mb-8 text-white">
+                About Us
+            </h1>
+            <p class="text-xl text-gray-400">
+                Empowering you with evidence-based nutrition insights for optimal health and wellness.
+            </p>
+        </header>
 
-<main class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-6">{pageTitle}</h1>
-    
-    <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4">Our Mission</h2>
-        <p class="mb-4">At Glowing Body, we believe that true wellness starts from within. We're passionate about empowering you with knowledge about the food that fuels your body and mind.</p>
+        <!-- Introduction Section -->
+        <section class="mb-20 bg-slate-800/50 rounded-2xl p-8 md:p-12">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6 text-white">Welcome to Glowing Body</h2>
+                <div class="space-y-6 text-gray-400">
+                    <p>
+                        We are dedicated to share valuable insights about nutrition and wellness. We curate and summarize information from publicly available research, expert discussions, and scientific literature to make it more accessible to everyone interested in improving their health.
+                    </p>
+                    <p>
+                        Our articles are inspired by the work of leading health experts and researchers in the field of nutrition. While we don't conduct original research, we aim to present existing scientific information in a clear, understandable format that helps you learn more about nutrition and health topics.
+                    </p>
+                    <p>
+                        Through our blog posts, we share summaries of available research and expert insights about topics like metabolic health, nutrition, and wellness. Our goal is to help you discover and learn from the wealth of nutrition knowledge that's already out there.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="mb-20 mx-auto max-w-6xl px-4">
+        <h2 class="text-3xl font-bold mb-8 text-white text-center">Our Inspirations</h2>
+        <p class="text-gray-400 text-center max-w-3xl mx-auto mb-12">
+            Our content is inspired by the work of many leading health and nutrition experts. While we're not affiliated with these professionals, their research and insights help shape our understanding of nutrition and health.
+        </p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-slate-800/50 rounded-lg p-8"> <!-- Increased padding from p-6 to p-8 -->
+                <h3 class="text-xl font-bold mb-4 text-white">Muscle-Centric Medicine</h3>
+                <p class="text-gray-400">
+                    We draw insights from modern research on muscle as a metabolic organ and the importance of protein optimization for health, including the groundbreaking work in the field of muscle-centric medicine.
+                </p>
+            </div>
+
+            <div class="bg-slate-800/50 rounded-lg p-8">
+                <h3 class="text-xl font-bold mb-4 text-white">Glucose Management</h3>
+                <p class="text-gray-400">
+                    Our content is influenced by modern research on glucose monitoring and metabolic health, including insights from popular science communicators who have made this knowledge accessible to the public.
+                </p>
+            </div>
+
+            <div class="bg-slate-800/50 rounded-lg p-8">
+                <h3 class="text-xl font-bold mb-4 text-white">Inflammation & Fasting</h3>
+                <p class="text-gray-400">
+                    We follow the latest research on inflammation, cellular health, and fasting protocols, drawing from various scientific studies and their practical applications in daily life.
+                </p>
+            </div>
+        </div>
     </section>
 
-    <section class="grid md:grid-cols-2 gap-8">
-        <div>
-            <h3 class="text-xl font-semibold mb-3">What We Offer</h3>
-            <ul class="space-y-2">
-                <li>Real Food Wisdom: Understanding whole, unprocessed foods</li>
-                <li>Brain Food Insights: Nutrients that power your cognitive function</li>
-                <li>Food Science: Latest research and innovations in nutrition</li>
-                <li>Mindful Eating: Building a conscious relationship with food</li>
+    <!-- Research Sources Section -->
+    <section class="mb-20 bg-slate-800/50 rounded-2xl p-8 md:p-12">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-white">Our Research Sources</h2>
+            <p class="text-gray-400 mb-6">
+                We base our content on reputable scientific sources, including:
+            </p>
+            <ul class="space-y-4 text-gray-400">
+                <li class="flex items-start">
+                    <span class="text-emerald-400 mr-2">→</span>
+                    <span>Peer-reviewed articles from PubMed and other scientific databases</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-emerald-400 mr-2">→</span>
+                    <span>Clinical studies published in respected medical journals</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-emerald-400 mr-2">→</span>
+                    <span>Guidelines from recognized health organizations</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-emerald-400 mr-2">→</span>
+                    <span>Meta-analyses and systematic reviews</span>
+                </li>
             </ul>
         </div>
-
-        <div>
-            <h3 class="text-xl font-semibold mb-3">Our Commitment</h3>
-            <p>We're dedicated to bringing you evidence-based information about nutrition, helping you make informed decisions about what you consume. From ancient wisdom to cutting-edge food science, we're here to guide you on your journey to optimal health.</p>
-        </div>
     </section>
 
-    <section class="mt-8">
-        <h2 class="text-2xl font-semibold mb-4">Join Our Journey</h2>
-        <p>Discover how the right nutrients can transform your body and mind. Let's explore the fascinating world of conscious nutrition together, one bite at a time.</p>
-    </section>
-</main>
-
-<Footer />
+    <!-- Join Us Section remains the same -->
+</Layout>

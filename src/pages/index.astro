@@ -14,32 +14,68 @@ const posts = await Promise.all(
     })
 );
 
-const sortedPosts = posts.sort((a, b) => 
-    new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
-);
+const sortedPosts = posts
+  .filter(post => post.frontmatter.pubDate)
+  .sort((a, b) => 
+      new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+  );
 ---
 
-<Layout title="Glowing Body | Your Guide to Mindful Nutrition">
-    <!-- Hero Section -->
-    <section class="py-20 mx-auto max-w-6xl px-4">
-        <h1 class="text-5xl md:text-6xl font-bold text-white text-center mb-8">
-            Transform Your Health Through Real Food
-        </h1>
-        <p class="text-xl text-gray-400 text-center max-w-3xl mx-auto">
-            Discover the power of mindful nutrition and learn how natural, whole foods can enhance your physical and mental wellbeing.
-        </p>
-    </section>
+<Layout title="Glowing Body - Discover Mindful Nutrition Tips and Recipes">
+	<!-- Hero Section -->
+	<section class="py-20 mx-auto max-w-6xl px-4">
+		<div class="grid md:grid-cols-2 gap-8 items-center">
+			<!-- Left side - Image -->
+			<div class="relative h-[400px] rounded-2xl overflow-hidden">
+				<img 
+					src="/images/hero-image.jpeg" 
+					alt="Fresh, healthy foods" 
+					class="absolute inset-0 w-full h-full object-cover"
+				/>
+				<div class="absolute inset-0 bg-gradient-to-r from-slate-900/50 to-transparent"></div>
+			</div>
 
-    <!-- Latest Blog Posts Section -->
-    <section class="py-16 bg-slate-900/50">
-        <div class="mx-auto max-w-6xl px-4">
-            <div class="flex justify-between items-center mb-12">
-                <h2 class="text-3xl font-bold text-white">Latest Articles</h2>
-                <a href="/blog" class="text-emerald-400 hover:text-emerald-300 transition duration-200">
-                    View All Posts →
-                </a>
-            </div>
-            <BlogPostsList posts={sortedPosts} />
-        </div>
-    </section>
+			<!-- Right side - Text -->
+			<div class="space-y-6">
+				<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+					Transform Your Health Through Real Food
+				</h1>
+				<p class="text-xl text-gray-400">
+					Discover the power of mindful nutrition and learn how natural, whole foods can enhance your physical and mental wellbeing.
+				</p>
+				<div class="flex gap-4">
+					<a 
+						href="/blog" 
+						class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-full transition duration-200"
+					>
+						Read Articles
+					</a>
+					<a 
+						href="/about" 
+						class="inline-block border border-slate-600 hover:border-slate-500 text-white px-6 py-3 rounded-full transition duration-200"
+					>
+						Learn More
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+<!-- Latest Blog Posts Section -->
+	<section class="py-16 bg-slate-900/50">
+	<div class="mx-auto max-w-6xl px-4">
+		<div class="flex justify-between items-center mb-12">
+			<h2 class="text-3xl font-bold text-white">Latest Articles</h2>
+			<a href="/blog" class="text-emerald-400 hover:text-emerald-300 transition duration-200" aria-label="View all blog posts">
+				View All Posts →
+			</a>
+		</div>
+		<div class="mb-6">
+			<p class="text-lg text-gray-400">
+				Explore the latest articles about mindful nutrition, real food recipes, and health tips to enhance your wellness journey.
+			</p>
+		</div>
+		<BlogPostsList posts={sortedPosts} />
+	</div>
+	</section>
 </Layout>
